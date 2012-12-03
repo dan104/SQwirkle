@@ -27,13 +27,31 @@ public class CoordinateTuple {
 		this.y = y;
 	}
 
-	
+		
 	public int getX() {
 		return x;
 	}
 
 	public int getY() {
 		return y;
+	}
+	
+	
+	@Override
+	/**
+	 * Need to base the hashCode on the x and y values of the coordinates 
+	 * so that we can look up cells by their coordinates later
+	 */
+	public int hashCode() {
+		//I don't know why this works but from research this is the standard way to minimise collisions
+		int result = 17;
+		int prime = 37;
+		
+		result = prime * result + x;
+		result = prime * result + y;
+		
+		return result;
+		
 	}
 	
 }

@@ -104,12 +104,12 @@ public class SQwirkleTile {
  *
  */
 enum Colour {
-	green,
-	blue,
-	orange,
-	red,
-	purple,
-	yellow
+	GREEN,
+	BLUE,
+	ORANGE,
+	RED,
+	PURPLE,
+	YELLOW
 }
 
 /**
@@ -119,10 +119,10 @@ enum Colour {
  *
  */
 enum Shape {
-	square,
-	circle,
-	diamond,
-	club,
-	star,
-	explosion
+	SQUARE,
+	CIRCLE,
+	DIAMOND,
+	CLUB,
+	STAR,
+	EXPLOSION
 }
