@@ -36,7 +36,10 @@ public class CoordinateTuple {
 		return y;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return String.format("(%d,%d)", x, y);
+	}
 	@Override
 	/**
 	 * Need to base the hashCode on the x and y values of the coordinates 
