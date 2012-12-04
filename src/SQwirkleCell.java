@@ -86,6 +86,9 @@ public class SQwirkleCell {
 	public int getNumberOfAdjacentTiles(int direction) {
 		return numberOfAdjacentTiles[direction];
 	}
+	public SQwirkleCell getNeighbourInDirection(int direction) {
+		return neighbours[direction];
+	}
 	public ArrayList<SQwirkleTile> getValidTiles() {
 		return validTiles;
 	}
@@ -129,6 +132,45 @@ public class SQwirkleCell {
 
 		for (int direction=0; direction<neighbours.length; direction++) {
 			notifyNeighboursOfChanges(direction);
+		}
+	}
+	/**
+	 * Used to get the opposite to a given direction, eg. the opposite of left is right, the opposite of up is down
+	 * 
+	 * @param direction
+	 * @return the opposite direction to direction
+	 */
+	public int getOppositeDirection(int direction) {
+		assert (direction >= 0 || direction < 5);
+		return (direction+2) % 4;
+	}
+	/**
+	 * Called when a tile is placed in line with the cell to update the list of tiles that can be placed on this tile
+	 * All tiles that are not in newTiles are removed from validTilesOnXAxis or validTilesOnYAxis respectively
+	 * 
+	 * @param newList The list of tiles that are still valid
+	 * @param axis The axis (x or y) for which to update the valid tiles
+	 */
+	public void updateValidTiles(ArrayList<SQwirkleTile> newList, char axis) {
+		assert (axis=='x' || axis=='y');
+		ArrayList<SQwirkleTile> listToUpdate = null;
+	
+		if (axis=='x')
+			listToUpdate = validTilesOnXAxis;
+		else if (axis=='y') 
+			listToUpdate = validTilesOnYAxis;
+	
+		for (SQwirkleTile t: listToUpdate) {
+			if (!newList.contains(t)) {
+				listToUpdate.remove(t);
+			}
+		}
+	
+		//update the validTiles field based on the new contents of validTilesOnAxis
+		for (SQwirkleTile t: validTiles) {
+			if (!listToUpdate.contains(t)) {
+				validTiles.remove(t);
+			}
 		}
 	}
 	/**
@@ -224,50 +266,6 @@ public class SQwirkleCell {
 				validTiles.add(t);
 			}
 		}
-	}
-
-	public SQwirkleCell getNeighbourInDirection(int direction) {
-		return neighbours[direction];
-	}
-
-	/**
-	 * Called when a tile is placed in line with the cell to update the list of tiles that can be placed on this tile
-	 * All tiles that are not in newTiles are removed from validTilesOnXAxis or validTilesOnYAxis respectively
-	 * 
-	 * @param newList The list of tiles that are still valid
-	 * @param axis The axis (x or y) for which to update the valid tiles
-	 */
-	public void updateValidTiles(ArrayList<SQwirkleTile> newList, char axis) {
-		assert (axis=='x' || axis=='y');
-		ArrayList<SQwirkleTile> listToUpdate = null;
-
-		if (axis=='x')
-			listToUpdate = validTilesOnXAxis;
-		else if (axis=='y') 
-			listToUpdate = validTilesOnYAxis;
-
-		for (SQwirkleTile t: listToUpdate) {
-			if (!newList.contains(t)) {
-				listToUpdate.remove(t);
-			}
-		}
-
-		//update the validTiles field based on the new contents of validTilesOnAxis
-		for (SQwirkleTile t: validTiles) {
-			if (!listToUpdate.contains(t)) {
-				validTiles.remove(t);
-			}
-		}
-	}
-	/**
-	 * Used to get the opposite to a given direction, eg. the opposite of left is right, the opposite of up is down
-	 * 
-	 * @param direction
-	 * @return the opposite direction to direction
-	 */
-	public int getOppositeDirection(int direction) {
-		assert (direction >= 0 || direction < 5);
-		return (direction+2) % 4;
 	}
 
 	private void notifyNeighboursOfChanges(int directionOfNeighbours) {

@@ -4,6 +4,10 @@
  *
  * The CoordinateTuple class is used to represent the coordinates of a cell on 
  * the board
+ * 
+ * CoordinateTuple objects are immutable. That is, once they are created their values cannot be altered.
+ * This is enforced because the hashCode for the object is calculated using the values of x and y so altering
+ * then would alter the hashCode.
  */
 public class CoordinateTuple {
 
@@ -57,4 +61,22 @@ public class CoordinateTuple {
 		
 	}
 	
+	public CoordinateTuple addXY(int dx, int dy) {
+		return new CoordinateTuple(x+dx, y+dy);
+	}
+	
+	public CoordinateTuple getCoordinatesAbove() {
+		return addXY(0, -1);
+	}
+	
+	public CoordinateTuple getCoordinatesBelow() {
+		return addXY(0, 1);
+	}
+	
+	public CoordinateTuple getCoordinatesLeft() {
+		return addXY(-1, 0);
+	}
+	public CoordinateTuple getCoordinatesRight() {
+		return addXY(1, 0);
+	}
 }
