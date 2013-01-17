@@ -60,7 +60,17 @@ public class CoordinateTuple {
 		return result;
 		
 	}
-	
+	@Override
+	public boolean equals(Object other) {
+		CoordinateTuple otherTuple;
+		if (!(other instanceof CoordinateTuple)) {
+			return false;
+		}
+		
+		otherTuple = (CoordinateTuple) other;
+		
+		return this.x == otherTuple.x && this.y == otherTuple.y;
+	}
 	public CoordinateTuple addXY(int dx, int dy) {
 		return new CoordinateTuple(x+dx, y+dy);
 	}

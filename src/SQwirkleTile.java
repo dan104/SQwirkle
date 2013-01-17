@@ -40,7 +40,7 @@ public class SQwirkleTile {
 		ArrayList<SQwirkleTile> compatibleTiles = new ArrayList<SQwirkleTile>(10);
 		SQwirkleTile tile;
 		
-		//get all tiles with the same color
+		//get all tiles with the same colour
 		for (Shape s: Shape.values()) {
 			if (s != shape) {
 				tile = new SQwirkleTile(colour, s);
@@ -113,7 +113,7 @@ enum Colour {
 }
 
 /**
- * The Shape class is used to represent the possibe shapes a tile can have
+ * The Shape class is used to represent the possible shapes a tile can have
  * 
  * @author Sam
  *

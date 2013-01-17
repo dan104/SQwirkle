@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+//TODO: split value into x and y components
 
 public class SQwirkleCell {
 	//TODO: currently setTile does not check if the two sides of a bridge are compatible with each other.
@@ -33,10 +34,10 @@ public class SQwirkleCell {
 	 * An array holding the number of tiles in a continuous line adjacent to this cell in each direction
 	 */
 	private int[] numberOfAdjacentTiles;
-	/**
-	 * The score a player would receive by placing a tile on this cell
-	 */
-	private int value;
+
+	private int xValue;
+	
+	private int yValue;
 	/**
 	 * An array on the 4 cells adjacent to this cell, which can be accessed using the class constants UP, DOWN etc
 	 * to retrieve the cell in the respective direction
@@ -92,8 +93,14 @@ public class SQwirkleCell {
 	public ArrayList<SQwirkleTile> getValidTiles() {
 		return validTiles;
 	}
-	public int getValue() {
-		return value;
+	public int getStandAloneValue() {
+		return xValue + yValue;
+	}
+	public int getXValue() {
+		return xValue;
+	}
+	public int getYValue() {
+		return yValue;
 	}
 	/**
 	 * Sets the number of adjacent tiles in <code>direction</code> and updates the value of the cell to match the change
@@ -198,22 +205,17 @@ public class SQwirkleCell {
 		int leftVal = numberOfAdjacentTiles[LEFT] == 0? 0 : numberOfAdjacentTiles[LEFT]+1;
 		int rightVal = numberOfAdjacentTiles[RIGHT] == 0? 0 : numberOfAdjacentTiles[RIGHT]+1;
 		
-		int yVal = upVal + downVal;
-		int xVal = leftVal + rightVal;
+		yValue = upVal + downVal;
+		xValue = leftVal + rightVal;
 		if (upVal>0 && downVal>0)
-			yVal--;
+			yValue--;
 		if (leftVal>0 && rightVal>0)
-			xVal--;
+			xValue--;
 		/* deal with Qwirkle's */
-		if (xVal == 6)
-			xVal *= 2;
-		if (yVal == 6)
-			yVal *= 2;
-
-		value = xVal + yVal;
-		//handle the original cell at 0,0 which has no neighbours but value of 1
-		if (value == 0) 
-			value = 1;
+		if (xValue == 6)
+			xValue *= 2;
+		if (yValue == 6)
+			yValue *= 2;
 	}
 	/**
 	 * Called by constructors. Uses the neighbour fields to generate the validTiles, validTilesOnXAxis 
