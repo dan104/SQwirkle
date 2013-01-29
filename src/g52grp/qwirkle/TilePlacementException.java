@@ -1,3 +1,4 @@
+package g52grp.qwirkle;
 /**
  * A TilePlacementException is thrown when a tile is placed on a cell which the rules do not allow
  * eg. when a tile is placed next to another tile of different shape and colour, or when an attempt 

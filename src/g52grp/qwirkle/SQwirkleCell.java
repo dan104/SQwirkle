@@ -1,5 +1,5 @@
+package g52grp.qwirkle;
 import java.util.ArrayList;
-//TODO: split value into x and y components
 
 public class SQwirkleCell {
 	//TODO: currently setTile does not check if the two sides of a bridge are compatible with each other.
@@ -34,9 +34,13 @@ public class SQwirkleCell {
 	 * An array holding the number of tiles in a continuous line adjacent to this cell in each direction
 	 */
 	private int[] numberOfAdjacentTiles;
-
+	/**
+	 * The value this cell has on the x axis
+	 */
 	private int xValue;
-	
+	/**
+	 * The value this cell has on the y axis
+	 */
 	private int yValue;
 	/**
 	 * An array on the 4 cells adjacent to this cell, which can be accessed using the class constants UP, DOWN etc
@@ -270,6 +274,10 @@ public class SQwirkleCell {
 		}
 	}
 
+	/**
+	 * 
+	 * @param directionOfNeighbours
+	 */
 	private void notifyNeighboursOfChanges(int directionOfNeighbours) {
 		ArrayList<SQwirkleTile> newValidTileList = null;
 		SQwirkleCell neighbour = neighbours[directionOfNeighbours];

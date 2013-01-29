@@ -1,3 +1,4 @@
+package g52grp.qwirkle;
 import java.util.ArrayList;
 
 
@@ -12,6 +13,9 @@ public class SQwirklePlayer {
 		hand = new ArrayList<SQwirkleTile>();
 	}
 
+	public int getNumberOfTiles() {
+		return numOfTiles;
+	}
 	public void addTile(SQwirkleTile tile) {
 		hand.add(tile);
 		assert (hand.size() <= 6);

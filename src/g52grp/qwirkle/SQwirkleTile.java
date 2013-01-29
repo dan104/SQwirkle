@@ -1,3 +1,4 @@
+package g52grp.qwirkle;
 import java.util.ArrayList;
 
 
@@ -95,6 +96,9 @@ public class SQwirkleTile {
 		
 		return ret;
 	}
+	public String toString() {
+		return colour + " " + shape;
+	}
 }
 
 /**
@@ -104,12 +108,12 @@ public class SQwirkleTile {
  *
  */
 enum Colour {
-	GREEN,
-	BLUE,
-	ORANGE,
-	RED,
-	PURPLE,
-	YELLOW
+	GREEN {public String toString() { return "Gr"; }},
+	BLUE {public String toString() { return "Bl"; }},
+	ORANGE {public String toString() { return "Or"; }},
+	RED {public String toString() { return "Re"; }},
+	PURPLE {public String toString() { return "Pu"; }},
+	YELLOW {public String toString() { return "Ye"; }}
 }
 
 /**
@@ -119,10 +123,10 @@ enum Colour {
  *
  */
 enum Shape {
-	SQUARE,
-	CIRCLE,
-	DIAMOND,
-	CLUB,
-	STAR,
-	EXPLOSION
+	SQUARE {public String toString() { return "Sq"; }},
+	CIRCLE {public String toString() { return "Ci"; }},
+	DIAMOND {public String toString() { return "Di"; }},
+	CLUB {public String toString() { return "Cl"; }},
+	STAR {public String toString() { return "St"; }},
+	EXPLOSION {public String toString() { return "Ex"; }}
 }
